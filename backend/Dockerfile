@@ -1,19 +1,17 @@
 FROM node:18
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy only package files first (for better caching)
+# Copy package files and install dependencies
 COPY package*.json ./
-
-# Install backend dependencies (includes express, mongoose, etc.)
 RUN npm install
 
-# Copy the rest of the backend source code
+# Copy the rest of the backend code
 COPY . .
 
-# Expose port (matches docker-compose.yml)
+# Expose the app port
 EXPOSE 5000
 
-# Start the backend app
+# Start the server
 CMD ["node", "server.js"]
