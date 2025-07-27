@@ -4,6 +4,7 @@ import axios from 'axios';
 import '../style/acc.css';
 import Footer from './Footer';
 import Header from './Header';
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const Accounts = () => {
   const [accountData, setAccountData] = useState([]);
@@ -13,9 +14,9 @@ const Accounts = () => {
       try {
         // fetch income, expense, and transactions
         const [incomesRes, expensesRes, transactionRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/income'),
-          axios.get('http://localhost:5000/api/expense'),
-          axios.get('http://localhost:5000/api/transaction'), // ✅ fetch all transfers
+          axios.get(`${API_BASE}/income`),
+          axios.get(`${API_BASE}/expense`),
+          axios.get(`${API_BASE}/transaction`), // ✅ fetch all transfers
         ]);
 
         // group incomes

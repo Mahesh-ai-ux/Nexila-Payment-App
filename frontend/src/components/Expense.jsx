@@ -4,6 +4,8 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 import '../style/income.css';
+
+const API_BASE = process.env.REACT_APP_API_URL;
 const Expense = () => {
   const getCurrentDateTime = () => {
   const now = new Date();
@@ -51,7 +53,7 @@ const Expense = () => {
     // Fetch account types for the dropdown
     const fetchAccounts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/account');
+        const response = await axios.get(`${API_BASE}/account`);
         setAccounts(response.data);
       } catch (err) {
         console.error('Failed to fetch accounts', err);
@@ -64,7 +66,7 @@ const Expense = () => {
     // Fetch category types for the dropdown
     const fetchCategorys = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/category');
+        const response = await axios.get(`${API_BASE}/category`);
         setCategorys(response.data);
       } catch (err) {
         console.error('Failed to fetch category', err);
@@ -95,8 +97,8 @@ const handleSubmit = async (e, clearForm = false) => {
   try {
     // Get balances
     const [incomeRes, expenseRes] = await Promise.all([
-      axios.get('http://localhost:5000/api/income'),
-      axios.get('http://localhost:5000/api/expense'),
+      axios.get(`${API_BASE}/income`),
+      axios.get(`${API_BASE}/expense`),
     ]);
 
     const selectedAccount = formData.accountType;
@@ -125,7 +127,7 @@ const month = new Date(formData.date).getMonth() + 1;
 const year = new Date(formData.date).getFullYear();
 
 // Fetch Budget
-const budgetRes = await axios.get('http://localhost:5000/api/budget', {
+const budgetRes = await axios.get(`${API_BASE}/budget`, {
   params: {
     accountType: formData.accountType,
     category: formData.category,
@@ -137,7 +139,7 @@ const budgetData = budgetRes.data;
 const categoryBudget = budgetData?.budgetAmount || 0;
 
 // Get total spent so far in this category this month
-const expensesRes = await axios.get('http://localhost:5000/api/expense');
+const expensesRes = await axios.get(`${API_BASE}/expense`);
 const monthlyCategoryTotal = expensesRes.data
   .filter(e =>
     e.accountType === formData.accountType &&
@@ -165,7 +167,7 @@ if (categoryBudget > 0 && newTotal > categoryBudget) {
 
     // balance is enough, post
     const payload = { ...formData, photo: image };
-    const response = await fetch('http://localhost:5000/api/expense/add-expense', {
+    const response = await fetch(`${API_BASE}/expense/add-expense`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

@@ -3,6 +3,8 @@ import '../style/accounts.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_BASE = process.env.REACT_APP_API_URL;
+
 const Account = () => {
   const [accounts, setAccounts] = useState([]);
   const [formData, setFormData] = useState({ accountType: '' });
@@ -10,7 +12,8 @@ const Account = () => {
 
   const fetchAccounts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/account');
+     // const res = await axios.get('${API_BASE}/account');
+      const res = await axios.get(`${API_BASE}/account`);
       setAccounts(res.data);
     } catch (err) {
       console.error('Error fetching accounts:', err);
@@ -28,7 +31,8 @@ const Account = () => {
   const handleAdd = async () => {
     if (!formData.accountType.trim()) return;
     try {
-      await axios.post('http://localhost:5000/api/account', formData);
+       await axios.post(`${API_BASE}/account`, formData);
+       
       setFormData({ accountType: '' });
       fetchAccounts();
     } catch (err) {
@@ -38,7 +42,7 @@ const Account = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/account/${id}`);
+      await axios.delete(`${API_BASE}/account/${id}`);
       fetchAccounts();
     } catch (err) {
       console.error('Error deleting account:', err);
@@ -52,7 +56,7 @@ const Account = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/account/${editId}`, formData);
+      await axios.put(`${API_BASE}/account/${editId}`, formData);
       setFormData({ accountType: '' });
       setEditId(null);
       fetchAccounts();

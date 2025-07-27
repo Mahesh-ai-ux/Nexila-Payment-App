@@ -10,6 +10,7 @@ import '../style/analysis.css';
 import '../style/navbar.css';
 import { ToggleLeft, ToggleRight } from 'lucide-react';
 
+const API_BASE = process.env.REACT_APP_API_URL;
 const Analysis = () => {
 const navigate = useNavigate();
 {/*analysis page state*/}
@@ -59,7 +60,7 @@ const [filter, setFilter] = useState('all');
 
   const fetchCategoryData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/${type}`);
+      const res = await axios.get(`${API_BASE}/${type}`);
       const data = res.data;
 
       const now = new Date();
@@ -116,8 +117,8 @@ const [filter, setFilter] = useState('all');
       setPastCategoryData(groupByCategory(pastFiltered));
 
       {/*navbar page get the date for this page*/}
-      const incomeRes = await axios.get('http://localhost:5000/api/income');
-      const expenseRes = await axios.get('http://localhost:5000/api/expense');
+      const incomeRes = await axios.get(`${API_BASE}/income`);
+      const expenseRes = await axios.get(`${API_BASE}/expense`);
       setIncomes(incomeRes.data);
       setExpenses(expenseRes.data);
        // Totals calculated only once from all data  navbar page

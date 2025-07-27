@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/budget.css'; // Ensure you create this for styles
 import Footer from './Footer';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 const Budget = () => {
   const [formData, setFormData] = useState({
     accountType: '',
@@ -17,8 +17,8 @@ const Budget = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/account').then(res => setAccounts(res.data));
-    axios.get('http://localhost:5000/api/category').then(res => setCategories(res.data));
+    axios.get(`${API_BASE}/account`).then(res => setAccounts(res.data));
+    axios.get(`${API_BASE}/category`).then(res => setCategories(res.data));
   }, []);
 
   const handleChange = e => {
@@ -28,7 +28,7 @@ const Budget = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/budget/set', formData);
+      await axios.post(`${API_BASE}/budget/set`, formData);
       alert("✅ Budget saved successfully!");
       setFormData({
         accountType: '',

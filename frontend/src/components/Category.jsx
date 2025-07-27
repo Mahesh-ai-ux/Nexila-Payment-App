@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../style/accounts.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 const Category = () => {
   const [categorys, setCategorys] = useState([]);
   const [formData, setFormData] = useState({ categoryType: '' });
@@ -10,7 +10,7 @@ const Category = () => {
 
   const fetchCategorys = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/category');
+      const res = await axios.get(`${API_BASE}/category`);
       setCategorys(res.data);
     } catch (err) {
       console.error('Error fetching categorys:', err);
@@ -28,7 +28,7 @@ const Category = () => {
   const handleAdd = async () => {
     if (!formData.categoryType.trim()) return;
     try {
-      await axios.post('http://localhost:5000/api/category', formData);
+      await axios.post(`${API_BASE}/category, formData`);
       setFormData({ categoryType: '' });
       fetchCategorys();
     } catch (err) {
@@ -38,7 +38,7 @@ const Category = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/category/${id}`);
+      await axios.delete(`${API_BASE}/category/${id}`);
       fetchCategorys();
     } catch (err) {
       console.error('Error deleting category:', err);
@@ -52,7 +52,7 @@ const Category = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/category/${editId}`, formData);
+      await axios.put(`${API_BASE}/category/${editId}`, formData);
       setFormData({ categoryType: '' });
       setEditId(null);
       fetchCategorys();

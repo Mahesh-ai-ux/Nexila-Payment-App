@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../style/income.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 const Income = () => {
 
   const getCurrentDateTime = () => {
@@ -31,7 +31,7 @@ const Income = () => {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/account');
+        const response = await axios.get(`${API_BASE}/account`);
         setAccounts(response.data);
       } catch (err) {
         console.error('Failed to fetch accounts', err);
@@ -43,7 +43,7 @@ const Income = () => {
   useEffect(() => {
     const fetchCategorys = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/category');
+        const response = await axios.get(`${API_BASE}/category`);
         setCategorys(response.data);
       } catch (err) {
         console.error('Failed to fetch categories', err);
@@ -73,7 +73,7 @@ const Income = () => {
     const payload = { ...formData, photo: image };
 
     try {
-      const response = await fetch('http://localhost:5000/api/income', {
+      const response = await fetch(`${API_BASE}/income`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

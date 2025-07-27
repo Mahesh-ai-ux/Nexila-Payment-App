@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, Search, Calendar } from 'lucide-react';
 import axios from 'axios';
 import logoImg from '../assets/log.png';
+const API_BASE = process.env.REACT_APP_API_URL;
 
 const Header = () => {
      const navigate = useNavigate();
@@ -26,8 +27,8 @@ const Header = () => {
       
         const fetchData = async () => {
           try {
-            const incomeRes = await axios.get('http://localhost:5000/api/income');
-            const expenseRes = await axios.get('http://localhost:5000/api/expense');
+            const incomeRes = await axios.get(`${API_BASE}/income`);
+            const expenseRes = await axios.get(`${API_BASE}/expense`);
             setIncomes(incomeRes.data);
             setExpenses(expenseRes.data);
              // Totals calculated only once from all data  navbar page

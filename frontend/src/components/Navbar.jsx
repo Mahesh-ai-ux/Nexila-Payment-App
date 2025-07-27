@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import '../style/navbar.css';
 import logoImg from '../assets/log.png';
 import axios from 'axios';
-
+const API_BASE = process.env.REACT_APP_API_URL;
 const Navbar = () => {
   const navigate = useNavigate();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -37,8 +37,8 @@ const Navbar = () => {
 
   const fetchData = async () => {
     try {
-      const incomeRes = await axios.get('http://localhost:5000/api/income');
-      const expenseRes = await axios.get('http://localhost:5000/api/expense');
+      const incomeRes = await axios.get(`${API_BASE}/income`);
+      const expenseRes = await axios.get(`${API_BASE}/expense`);
       setIncomes(incomeRes.data);
       setExpenses(expenseRes.data);
       const incomeSum = incomeRes.data.reduce((sum, item) => sum + Number(item.amount), 0);
