@@ -13,9 +13,9 @@ const Accounts = () => {
       try {
         // fetch income, expense, and transactions
         const [incomesRes, expensesRes, transactionRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/income'),
-          axios.get('http://localhost:5000/api/expense'),
-          axios.get('http://localhost:5000/api/transaction'), // ✅ fetch all transfers
+          axios.get('http://3.21.60.93:5000/api/income'),
+          axios.get('http://3.21.60.93:5000/api/expense'),
+          axios.get('http://3.21.60.93:5000/api/transaction'), // ✅ fetch all transfers
         ]);
 
         // group incomes

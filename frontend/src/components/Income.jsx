@@ -31,7 +31,7 @@ const Income = () => {
   useEffect(() => {
     const fetchAccounts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/account');
+        const response = await axios.get('http://3.21.60.93:5000/api/account');
         setAccounts(response.data);
       } catch (err) {
         console.error('Failed to fetch accounts', err);
@@ -43,7 +43,7 @@ const Income = () => {
   useEffect(() => {
     const fetchCategorys = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/category');
+        const response = await axios.get('http://3.21.60.93:5000/api/category');
         setCategorys(response.data);
       } catch (err) {
         console.error('Failed to fetch categories', err);
@@ -73,7 +73,7 @@ const Income = () => {
     const payload = { ...formData, photo: image };
 
     try {
-      const response = await fetch('http://localhost:5000/api/income', {
+      const response = await fetch('http://3.21.60.93:5000/api/income', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

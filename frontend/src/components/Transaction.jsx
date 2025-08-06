@@ -24,7 +24,7 @@ const Transaction = () => {
       // Fetch account types for the dropdown
       const fetchAccounts = async () => {
         try {
-          const response = await axios.get('http://localhost:5000/api/account');
+          const response = await axios.get('http://3.21.60.93:5000/api/account');
           setAccounts(response.data);
         } catch (err) {
           console.error('Failed to fetch accounts', err);
@@ -71,7 +71,7 @@ const Transaction = () => {
     const payload = { ...formData };
   
     try {
-      const response = await fetch('http://localhost:5000/api/transaction/add-transaction', {
+      const response = await fetch('http://3.21.60.93:5000/api/transaction/add-transaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

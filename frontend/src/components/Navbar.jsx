@@ -37,8 +37,8 @@ const Navbar = () => {
 
   const fetchData = async () => {
     try {
-      const incomeRes = await axios.get('http://localhost:5000/api/income');
-      const expenseRes = await axios.get('http://localhost:5000/api/expense');
+      const incomeRes = await axios.get('http://3.21.60.93:5000/api/income');
+      const expenseRes = await axios.get('http://3.21.60.93:5000/api/expense');
       setIncomes(incomeRes.data);
       setExpenses(expenseRes.data);
       const incomeSum = incomeRes.data.reduce((sum, item) => sum + Number(item.amount), 0);

@@ -59,7 +59,7 @@ const [filter, setFilter] = useState('all');
 
   const fetchCategoryData = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/${type}`);
+      const res = await axios.get(`http://3.21.60.93:5000/api/${type}`);
       const data = res.data;
 
       const now = new Date();
@@ -116,8 +116,8 @@ const [filter, setFilter] = useState('all');
       setPastCategoryData(groupByCategory(pastFiltered));
 
       {/*navbar page get the date for this page*/}
-      const incomeRes = await axios.get('http://localhost:5000/api/income');
-      const expenseRes = await axios.get('http://localhost:5000/api/expense');
+      const incomeRes = await axios.get('http://3.21.60.93:5000/api/income');
+      const expenseRes = await axios.get('http://3.21.60.93:5000/api/expense');
       setIncomes(incomeRes.data);
       setExpenses(expenseRes.data);
        // Totals calculated only once from all data  navbar page

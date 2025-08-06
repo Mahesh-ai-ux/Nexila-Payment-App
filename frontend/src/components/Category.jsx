@@ -10,7 +10,7 @@ const Category = () => {
 
   const fetchCategorys = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/category');
+      const res = await axios.get('http://3.21.60.93:5000/api/category');
       setCategorys(res.data);
     } catch (err) {
       console.error('Error fetching categorys:', err);
@@ -28,7 +28,7 @@ const Category = () => {
   const handleAdd = async () => {
     if (!formData.categoryType.trim()) return;
     try {
-      await axios.post('http://localhost:5000/api/category', formData);
+      await axios.post('http://3.21.60.93:5000/api/category', formData);
       setFormData({ categoryType: '' });
       fetchCategorys();
     } catch (err) {
@@ -38,7 +38,7 @@ const Category = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/category/${id}`);
+      await axios.delete(`http://3.21.60.93:5000/api/category/${id}`);
       fetchCategorys();
     } catch (err) {
       console.error('Error deleting category:', err);
@@ -52,7 +52,7 @@ const Category = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/category/${editId}`, formData);
+      await axios.put(`http://3.21.60.93:5000/api/category/${editId}`, formData);
       setFormData({ categoryType: '' });
       setEditId(null);
       fetchCategorys();

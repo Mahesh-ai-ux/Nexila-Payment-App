@@ -17,8 +17,8 @@ const Budget = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/account').then(res => setAccounts(res.data));
-    axios.get('http://localhost:5000/api/category').then(res => setCategories(res.data));
+    axios.get('http://3.21.60.93:5000/api/account').then(res => setAccounts(res.data));
+    axios.get('http://3.21.60.93:5000/api/category').then(res => setCategories(res.data));
   }, []);
 
   const handleChange = e => {
@@ -28,7 +28,7 @@ const Budget = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/budget/set', formData);
+      await axios.post('http://3.21.60.93:5000/api/budget/set', formData);
       alert("✅ Budget saved successfully!");
       setFormData({
         accountType: '',
