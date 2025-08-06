@@ -8,7 +8,7 @@ RUN npm install
 COPY . .
 
 ENV PORT=3001
-ENV MONGODB_URI=mongodb://mongodb:27017/appdb
+ENV MONGODB_URI=mongodb://mongodb:27017/nexila_db
 ENV NODE_ENV=production
 
 EXPOSE 3001
