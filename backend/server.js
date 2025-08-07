@@ -26,14 +26,12 @@ app.use('/api/account', accountRoutes);
 app.use('/api/category', categoryRoutes);
 app.use('/api/budget', budgetRoutes);
 
-// DB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('✅ MongoDB connected - server.js:34'))
-.catch(err => console.error('❌ MongoDB connection error: - server.js:35', err));
+// DB Connection (simplified)
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ MongoDB connected - server.js:34'))
+  .catch(err => console.error('❌ MongoDB connection error - server.js:35', err));
 
 // Start Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT} - server.js:39`));
+

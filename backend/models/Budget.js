@@ -1,5 +1,5 @@
 // models/Budget.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const budgetSchema = new mongoose.Schema({
   accountType: String,
@@ -9,4 +9,7 @@ const budgetSchema = new mongoose.Schema({
   budgetAmount: Number,
 });
 
-module.exports = mongoose.model('Budget', budgetSchema);
+const Budget = mongoose.model('Budget', budgetSchema);
+
+export default Budget; // ✅ ES module default export
+

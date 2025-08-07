@@ -1,7 +1,7 @@
-// routes/budget.js
-const express = require('express');
+import express from 'express';
+import Budget from '../models/Budget.js';
+
 const router = express.Router();
-const Budget = require('../models/Budget');
 
 // Add or Update Budget
 router.post('/set', async (req, res) => {
@@ -33,4 +33,5 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
+
